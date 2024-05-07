@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Navigation Bar</title>
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #13274F;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .navbar a, .dropdown .dropbtn {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1ca9c9;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="home.html">Home</a>
+    <a href="login.html">Login</a>
+    <div class="dropdown">
+      <button class="dropbtn"><a href="courses.html">Courses</a>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="math.html">Math</a>
+        <a href="english.html">English</a>
+        <a href="electives.html">Electives</a>
+      </div>
+    </div>
+    <a href="myaccount.html">My Account</a>
+  </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome to My Account</h1>
+        <div v-if="role === 'student'">
+            <!-- Content for student -->
+            <h2>Student Dashboard</h2>
+            <p>This is the dashboard for students.</p>
+        </div>
+        <div v-else-if="role === 'teacher'">
+            <!-- Content for teacher -->
+            <h2>Teacher Dashboard</h2>
+            <p>This is the dashboard for teachers.</p>
+            <a v-bind:href="'courses.html?role=' + role">Go to Courses</a> <!-- Link to courses.html -->
+        </div>
+        <div v-else>
+            <!-- Default content or error message -->
+            <p>Invalid role.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                role: '' // Initialize role data
+            },
+            created() {
+                // Parse the role from URL query parameters
+                const params = new URLSearchParams(window.location.search);
+                this.role = params.get('role');
+            }
+        });
+    </script>
+</body>
+</html>
